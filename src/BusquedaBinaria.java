@@ -14,24 +14,38 @@ public class BusquedaBinaria {
     }
 
 
-    public int findByEdad(Persona[] personas, int edad){
-        int left = 0;
-        int right = personas.length - 1;
+    public int findByEdad(Persona[] personas, int edad) {
+        int bajo = 0;
+        int alto = personas.length - 1;
 
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            for (Persona persona : personas) {
-                System.out.print(" | " + persona.getEdad());
+        while (bajo <= alto) {
+            int centro = (bajo + alto) / 2;
+            int valorCentro = personas[centro].getEdad();
+
+            for (int i = bajo; i <= alto; i++) {
+                if (i == centro) {
+                    System.out.print("| " + personas[i].getEdad() + " | ");
+                } else {
+                    System.out.print(personas[i].getEdad() + " ");
+                }
             }
-            System.out.println("\n left: " + left + ", mid: " + mid + ", right: " + right + ", edad en mid: " + personas[mid].getEdad());
-            if (personas[mid].getEdad() == edad) {
-                return mid; 
-            } else if (personas[mid].getEdad() < edad) {
-                left = mid + 1; 
+
+            System.out.println();
+
+            if (valorCentro == edad) {
+                System.out.println("bajo=" + bajo + " alto=" + alto +" centro=" + centro + " valorCentro=" + valorCentro +"    --> ENCONTRADO");
+                return centro;
+            } else if (valorCentro < edad) {
+                System.out.println("bajo=" + bajo + " alto=" + alto +" centro=" + centro + " valorCentro=" + valorCentro +"    --> DERECHA");
+                bajo = centro + 1;
             } else {
-                right = mid - 1; 
+                System.out.println("bajo=" + bajo + " alto=" + alto +" centro=" + centro + " valorCentro=" + valorCentro +"    --> IZQUIERDA");
+                alto = centro - 1;
             }
+
+            System.out.println();
         }
+
         return -1;
-    }
+}
 }

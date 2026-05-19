@@ -14,7 +14,8 @@ public class App {
 
         int edadBuscada = busquedaBinaria.findByEdad(personas, edad);
         if (edadBuscada != -1) {
-            System.out.println("Persona encontrada en el índice: " + edadBuscada);
+            System.out.println("La persona con la edad " + edad + " es "
+                    + personas[edadBuscada].getNombre());
         } else {
             System.out.println("Persona no encontrada.");
         }
